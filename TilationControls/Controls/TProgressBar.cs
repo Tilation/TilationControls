@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TilationControls.Controls
@@ -20,21 +14,30 @@ namespace TilationControls.Controls
     public enum ProgressStyle
     {
         Flat,
-        Segmented
+        //Segmented,
+        //IdkHowLongItsGonnaTakeJustShowThingsAreWorking
     }
 
     public partial class TProgressBar : UserControl
     {
-        private int value;
-        private int shown_value;
+        // ProgressBar Values
+        private float value;
+        private float shownValue;
+        private float maxValue = 100;
+
+        //  Design
         private int borderThickness;
         private ProgressChange progressType;
-        private bool valueIsDrawn = false;
-        private Timer animationTimer;
-
         private Color borderColor;
 
-        
+        // Animation Controller
+        private Timer animationTimer;
+
+        //  Constant
+        private float constantSpeed = 10f;
+
+        // Lerp
+        private float lerpSpeed = 20f;
 
         public TProgressBar()
         {
@@ -45,43 +48,70 @@ namespace TilationControls.Controls
             InitializeComponent();
         }
 
+        //  This handles the animations
         private void AnimationTimerTick(object sender, EventArgs e)
         {
+            var dif = value - shownValue;
             switch (progressType)
             {
                 default:
                 case ProgressChange.Instant:
                     {
-                        shown_value = value;
+                        shownValue = value;
                         Invalidate();
                         animationTimer.Stop();
+                        break;
+                    }
+                case ProgressChange.Lerp:
+                    {
+                        float lerpValue = (dif) * LerpSpeed / 100f;
+
+                        shownValue += (lerpValue > 0f && lerpValue < 1f) ? 1 : (lerpValue < 0f && lerpValue > -1f) ? -1 : (int)lerpValue;
+
+                        if (Math.Abs(dif) <= 1)
+                        {
+                            shownValue = value;
+                            animationTimer.Stop();
+                        }
+                        Invalidate();
+                        break;
+                    }
+                case ProgressChange.Constant:
+                    {
+                        
+                        shownValue += ConstantSpeed * Math.Sign(dif);
+                        if (Math.Abs(dif) <= 1)
+                        {
+                            shownValue = value;
+                            animationTimer.Stop();
+                        }
+                        Invalidate();
                         break;
                     }
             }
         }
 
-        int GetBarWidthFromPercent()
+        float GetBarWidthFromPercent()
         {
-            return ClientSize.Width * shown_value / 100;
+            return (ClientSize.Width) * shownValue / MaxValue;
         }
 
-        public int Value 
+        public float Value
         {
             get => value;
-            set 
-            { 
-                var sanitized_input = (value <= 100) ? (value >= 0) ? value : 0 : 100;
+            set
+            {
+                var sanitized_input = (value <= MaxValue) ? (value >= 0) ? value : 0 : MaxValue;
                 if (this.value != sanitized_input)
                 {
                     this.value = sanitized_input;
-                    valueIsDrawn = false;
                     animationTimer.Start();
                     Invalidate();
                 }
             }
         }
 
-        public int BorderThickness 
+        public int BorderThickness
         {
             get => borderThickness;
             set
@@ -91,8 +121,8 @@ namespace TilationControls.Controls
             }
         }
 
-        public ProgressChange ProgressType 
-        { 
+        public ProgressChange ProgressType
+        {
             get => progressType;
             set
             {
@@ -101,8 +131,8 @@ namespace TilationControls.Controls
             }
         }
 
-        public Color BorderColor 
-        { 
+        public Color BorderColor
+        {
             get => borderColor;
             set
             {
@@ -110,6 +140,29 @@ namespace TilationControls.Controls
                 Invalidate();
             }
         }
+
+        public float LerpSpeed
+        {
+            get => lerpSpeed;
+            set
+            {
+                lerpSpeed = (value <= 100) ? (value > 0) ? value : 1 : 100; ;
+            }
+        }
+
+        public float MaxValue 
+        {
+            get => maxValue;
+            set
+            {
+
+                maxValue = (value > 0) ? value : 1;
+                Value = (Value > maxValue) ? maxValue : Value;
+                Invalidate();
+            }
+        }
+
+        public float ConstantSpeed { get => constantSpeed; set => constantSpeed = value; }
 
         private void TProgressBar_Paint(object sender, PaintEventArgs e)
         {
@@ -121,7 +174,7 @@ namespace TilationControls.Controls
             g.FillRectangle(new SolidBrush(BackColor), 0, 0, b.Width, b.Height);
 
             //  Draw ProgressBar to buffer
-            if (shown_value > 0)
+            if (shownValue > 0)
             {
                 g.FillRectangle(new SolidBrush(ForeColor),
                     0 + BorderThickness,
