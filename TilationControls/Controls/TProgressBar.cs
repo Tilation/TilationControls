@@ -78,7 +78,6 @@ namespace TilationControls.Controls
                     }
                 case ProgressChange.Constant:
                     {
-                        
                         shownValue += ConstantSpeed * Math.Sign(dif);
                         if (Math.Abs(dif) <= 1)
                         {
@@ -93,7 +92,7 @@ namespace TilationControls.Controls
 
         float GetBarWidthFromPercent()
         {
-            return (ClientSize.Width) * shownValue / MaxValue;
+            return (ClientSize.Width - (BorderThickness * 2)) * shownValue / MaxValue;
         }
 
         public float Value
@@ -179,7 +178,7 @@ namespace TilationControls.Controls
                 g.FillRectangle(new SolidBrush(ForeColor),
                     0 + BorderThickness,
                     0 + BorderThickness,
-                    GetBarWidthFromPercent() - (BorderThickness * 2),
+                    GetBarWidthFromPercent(),
                     b.Height - (BorderThickness * 2)
                     );
             }

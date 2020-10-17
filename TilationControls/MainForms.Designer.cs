@@ -47,10 +47,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 282);
+            this.ClientSize = new System.Drawing.Size(554, 282);
             this.Controls.Add(this.buttonTProgressBarTest);
             this.Name = "MainForms";
-            this.Text = "MainForms";
+            this.Text = "Testing Form";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -37,7 +37,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.Name = "TProgressBar";
-            this.Size = new System.Drawing.Size(513, 138);
+            this.Size = new System.Drawing.Size(494, 27);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.TProgressBar_Paint);
             this.Move += new System.EventHandler(this.TProgressBar_Move);
             this.Resize += new System.EventHandler(this.TProgressBar_Resize);

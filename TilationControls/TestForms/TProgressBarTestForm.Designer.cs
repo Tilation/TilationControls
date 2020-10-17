@@ -33,15 +33,15 @@
             this.buttonSet0 = new System.Windows.Forms.Button();
             this.buttonSet50 = new System.Windows.Forms.Button();
             this.buttonSet100 = new System.Windows.Forms.Button();
-            this.tProgressBar3 = new TilationControls.Controls.TProgressBar();
-            this.tProgressBar2 = new TilationControls.Controls.TProgressBar();
-            this.tProgressBar1 = new TilationControls.Controls.TProgressBar();
             this.labelValue = new System.Windows.Forms.Label();
             this.textBox = new System.Windows.Forms.TextBox();
             this.buttonSet = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.tProgressBar3 = new TilationControls.Controls.TProgressBar();
+            this.tProgressBar2 = new TilationControls.Controls.TProgressBar();
+            this.tProgressBar1 = new TilationControls.Controls.TProgressBar();
             this.SuspendLayout();
             // 
             // buttonSub
@@ -104,54 +104,6 @@
             this.buttonSet100.UseVisualStyleBackColor = true;
             this.buttonSet100.Click += new System.EventHandler(this.buttonSet100_Click);
             // 
-            // tProgressBar3
-            // 
-            this.tProgressBar3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tProgressBar3.BorderColor = System.Drawing.Color.Empty;
-            this.tProgressBar3.BorderThickness = 0;
-            this.tProgressBar3.ConstantSpeed = 1F;
-            this.tProgressBar3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.tProgressBar3.LerpSpeed = 1F;
-            this.tProgressBar3.Location = new System.Drawing.Point(12, 12);
-            this.tProgressBar3.MaxValue = 100F;
-            this.tProgressBar3.Name = "tProgressBar3";
-            this.tProgressBar3.ProgressType = TilationControls.Controls.ProgressChange.Constant;
-            this.tProgressBar3.Size = new System.Drawing.Size(325, 25);
-            this.tProgressBar3.TabIndex = 11;
-            this.tProgressBar3.Value = 0F;
-            // 
-            // tProgressBar2
-            // 
-            this.tProgressBar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tProgressBar2.BorderColor = System.Drawing.Color.Empty;
-            this.tProgressBar2.BorderThickness = 0;
-            this.tProgressBar2.ConstantSpeed = 10F;
-            this.tProgressBar2.ForeColor = System.Drawing.Color.Purple;
-            this.tProgressBar2.LerpSpeed = 20F;
-            this.tProgressBar2.Location = new System.Drawing.Point(12, 43);
-            this.tProgressBar2.MaxValue = 100F;
-            this.tProgressBar2.Name = "tProgressBar2";
-            this.tProgressBar2.ProgressType = TilationControls.Controls.ProgressChange.Lerp;
-            this.tProgressBar2.Size = new System.Drawing.Size(325, 25);
-            this.tProgressBar2.TabIndex = 10;
-            this.tProgressBar2.Value = 0F;
-            // 
-            // tProgressBar1
-            // 
-            this.tProgressBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tProgressBar1.BorderColor = System.Drawing.Color.Empty;
-            this.tProgressBar1.BorderThickness = 0;
-            this.tProgressBar1.ConstantSpeed = 10F;
-            this.tProgressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.tProgressBar1.LerpSpeed = 1F;
-            this.tProgressBar1.Location = new System.Drawing.Point(12, 74);
-            this.tProgressBar1.MaxValue = 100F;
-            this.tProgressBar1.Name = "tProgressBar1";
-            this.tProgressBar1.ProgressType = TilationControls.Controls.ProgressChange.Instant;
-            this.tProgressBar1.Size = new System.Drawing.Size(325, 25);
-            this.tProgressBar1.TabIndex = 9;
-            this.tProgressBar1.Value = 0F;
-            // 
             // labelValue
             // 
             this.labelValue.AutoSize = true;
@@ -206,7 +158,57 @@
             this.button1.Text = "Set";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // tProgressBar3
+            // 
+            this.tProgressBar3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tProgressBar3.BorderColor = System.Drawing.Color.Transparent;
+            this.tProgressBar3.BorderThickness = 5;
+            this.tProgressBar3.ConstantSpeed = 1F;
+            this.tProgressBar3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.tProgressBar3.LerpSpeed = 1F;
+            this.tProgressBar3.Location = new System.Drawing.Point(12, 12);
+            this.tProgressBar3.MaxValue = 100F;
+            this.tProgressBar3.Name = "tProgressBar3";
+            this.tProgressBar3.ProgressType = TilationControls.Controls.ProgressChange.Constant;
+            this.tProgressBar3.Size = new System.Drawing.Size(325, 25);
+            this.tProgressBar3.TabIndex = 11;
+            this.tProgressBar3.Value = 0F;
+            // 
+            // tProgressBar2
+            // 
+            this.tProgressBar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tProgressBar2.BorderColor = System.Drawing.Color.Empty;
+            this.tProgressBar2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tProgressBar2.BorderThickness = 0;
+            this.tProgressBar2.ConstantSpeed = 10F;
+            this.tProgressBar2.ForeColor = System.Drawing.Color.Purple;
+            this.tProgressBar2.LerpSpeed = 20F;
+            this.tProgressBar2.Location = new System.Drawing.Point(12, 43);
+            this.tProgressBar2.MaxValue = 100F;
+            this.tProgressBar2.Name = "tProgressBar2";
+            this.tProgressBar2.ProgressType = TilationControls.Controls.ProgressChange.Lerp;
+            this.tProgressBar2.Size = new System.Drawing.Size(325, 25);
+            this.tProgressBar2.TabIndex = 10;
+            this.tProgressBar2.Value = 0F;
+            // 
+            // tProgressBar1
+            // 
+            this.tProgressBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tProgressBar1.BorderColor = System.Drawing.Color.Empty;
+            this.tProgressBar1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tProgressBar1.BorderThickness = 0;
+            this.tProgressBar1.ConstantSpeed = 10F;
+            this.tProgressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.tProgressBar1.LerpSpeed = 1F;
+            this.tProgressBar1.Location = new System.Drawing.Point(12, 74);
+            this.tProgressBar1.MaxValue = 100F;
+            this.tProgressBar1.Name = "tProgressBar1";
+            this.tProgressBar1.ProgressType = TilationControls.Controls.ProgressChange.Instant;
+            this.tProgressBar1.Size = new System.Drawing.Size(325, 25);
+            this.tProgressBar1.TabIndex = 9;
+            this.tProgressBar1.Value = 0F;
+            // 
+            // TProgressBarTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -225,7 +227,7 @@
             this.Controls.Add(this.buttonSet0);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.buttonSub);
-            this.Name = "Form1";
+            this.Name = "TProgressBarTestForm";
             this.Text = "TilationProgressBar Test";
             this.ResumeLayout(false);
             this.PerformLayout();
