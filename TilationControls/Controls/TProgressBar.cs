@@ -115,7 +115,8 @@ namespace TilationControls.Controls
             get => borderThickness;
             set
             {
-                borderThickness = value;
+
+                borderThickness = (value >= 0) ? value : 0;
                 Invalidate();
             }
         }
@@ -154,14 +155,20 @@ namespace TilationControls.Controls
             get => maxValue;
             set
             {
-
                 maxValue = (value > 0) ? value : 1;
                 Value = (Value > maxValue) ? maxValue : Value;
                 Invalidate();
             }
         }
 
-        public float ConstantSpeed { get => constantSpeed; set => constantSpeed = value; }
+        public float ConstantSpeed
+        { 
+            get => constantSpeed;
+            set
+            {
+                constantSpeed = (value != 0) ? value : 1;
+            }
+        }
 
         private void TProgressBar_Paint(object sender, PaintEventArgs e)
         {
