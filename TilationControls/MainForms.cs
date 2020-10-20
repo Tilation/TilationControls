@@ -23,5 +23,12 @@ namespace TilationControls
             TProgressBarTestForm t = new TProgressBarTestForm();
             t.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            TSyntaxTextBoxTestForm t = new TSyntaxTextBoxTestForm();
+            t.ShowDialog();
+        }
     }
 }
