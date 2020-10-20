@@ -13,9 +13,26 @@ namespace TilationControls.DS
     {
         public string StringMatch;
         public Color TextColor;
-        public Color BackColor;
         public FontStyle Style;
-        public SyntaxHighlight(string stringMatch,Color textColor, Color? backColor = null, FontStyle style = FontStyle.Regular)
+        public Color BackColor;
+
+        public SyntaxHighlight(string stringMatch, Color textColor) : this()
+        {
+            StringMatch = stringMatch;
+            TextColor = textColor;
+            BackColor = Color.Transparent;
+            Style = FontStyle.Regular;
+        }
+
+        public SyntaxHighlight(string stringMatch, Color textColor, FontStyle style) : this()
+        {
+            StringMatch = stringMatch;
+            TextColor = textColor;
+            Style = style;
+            BackColor = Color.Transparent;
+        }
+
+        public SyntaxHighlight(string stringMatch, Color textColor, Color? backColor = null, FontStyle style = FontStyle.Regular)
         {
             StringMatch = stringMatch;
             TextColor = textColor;
@@ -29,9 +46,9 @@ namespace TilationControls.DS
         public Color DefaultColor;
         public int CursorPos;
         public string Text;
-        public Dictionary<string, SyntaxHighlight> SyntaxHighlightsArgs;
+        public List<SyntaxHighlight> SyntaxHighlightsArgs;
         public Font Font;
-        public SyntaxHighlightArgs(int cursorPos, string text, Dictionary<string, SyntaxHighlight> highlights, Color defaultColor, Font font)
+        public SyntaxHighlightArgs(int cursorPos, string text, List<SyntaxHighlight> highlights, Color defaultColor, Font font)
         {
             CursorPos = cursorPos;
             Text = text;

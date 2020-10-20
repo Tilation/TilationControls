@@ -19,10 +19,10 @@ namespace TilationControls.Controls
 
         bool format_again = false;
 
-        Dictionary<string, SyntaxHighlight> highlights = null;
+        List<SyntaxHighlight> highlights = null;
 
         
-        Dictionary<string, SyntaxHighlight> Highlights
+        List<SyntaxHighlight> Highlights
         {
             get => highlights;
             set
@@ -34,8 +34,20 @@ namespace TilationControls.Controls
                 }
             }
         }
+        public void ClearHighlights()
+        {
+            Highlights.Clear();
+        }
 
-        public void SetHighlights(Dictionary<string, SyntaxHighlight> NewHighlights)
+        public void AddHighlight(SyntaxHighlight nh)
+        {
+            if (!Highlights.Contains(nh))
+            {
+                Highlights.Add(nh);
+            }
+        }
+
+        public void SetHighlights(List<SyntaxHighlight> NewHighlights)
         {
             Highlights = NewHighlights;
         }
@@ -51,30 +63,31 @@ namespace TilationControls.Controls
 
             bwFormatter.RunWorkerCompleted += BwFormatter_RunWorkerCompleted;
 
-            Highlights = new Dictionary<string, SyntaxHighlight>()
+            Highlights = new List<SyntaxHighlight>()
             {
-                { "\\bint\\b",          new SyntaxHighlight( Color.Blue ,   null, FontStyle.Bold)},
-                { "\\bstring\\b",       new SyntaxHighlight( Color.Blue ,   null, FontStyle.Bold)},
-                { "\\bString\\b",       new SyntaxHighlight( Color.Green ,   null, FontStyle.Bold)},
-                { "\\bnew\\b",       new SyntaxHighlight( Color.Blue ,   null, FontStyle.Bold)},
-                { "\\bGraphicsPath\\b", new SyntaxHighlight( Color.Green ,  null, FontStyle.Bold)}
-
+                new SyntaxHighlight("int"           , Color.Blue    , FontStyle.Bold),
+                new SyntaxHighlight("string"        , Color.Blue    , FontStyle.Bold),
+                new SyntaxHighlight("String"        , Color.Green   , FontStyle.Bold),
+                new SyntaxHighlight("new"           , Color.Blue    , FontStyle.Bold),
+                new SyntaxHighlight("GraphicsPath"  , Color.Green   , FontStyle.Bold)
             };
         }
 
         private void BwFormatter_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            format_text = false;
             var Selection = SelectionStart;
-            SetRTF(((string)e.Result));
-            SelectionStart = Selection;
-            format_text = true;
-
             if (format_again)
             {
                 format_again = false;
                 FormatText();
             }
+            else
+            {
+                format_text = false;
+                SetRTF(((string)e.Result));
+                format_text = true;
+            }
+            SelectionStart = Selection;
         }
 
         private void SetRTF(string result)
@@ -94,15 +107,14 @@ namespace TilationControls.Controls
             if (_args.SyntaxHighlightsArgs != null)
             {
                 _buffer.Text = _args.Text;
-                foreach (KeyValuePair<string, SyntaxHighlight> kv in _args.SyntaxHighlightsArgs)
+                foreach (SyntaxHighlight format in _args.SyntaxHighlightsArgs)
                 {
                     if (e.Cancel)
                     {
                         break;
                     }
 
-                    string pattern = kv.Key;
-                    SyntaxHighlight format = kv.Value;
+                    string pattern = $"\\b{format.StringMatch}\\b";
 
                     foreach (Match match in Regex.Matches(_args.Text, pattern))
                     {
