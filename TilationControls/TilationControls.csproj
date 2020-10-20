@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\TIntNumericUpDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\TPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -55,6 +58,9 @@
     <Compile Include="Controls\TProgressBar.Designer.cs">
       <DependentUpon>TProgressBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TSyntaxTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MainForms.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,11 +69,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestForms\TIntNumericUpDownTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForms\TIntNumericUpDownTestForm.Designer.cs">
+      <DependentUpon>TIntNumericUpDownTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestForms\TProgressBarTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TestForms\TProgressBarTestForm.Designer.cs">
       <DependentUpon>TProgressBarTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestForms\TSyntaxTextBoxTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForms\TSyntaxTextBoxTestForm.Designer.cs">
+      <DependentUpon>TSyntaxTextBoxTestForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Controls\TProgressBar.resx">
       <DependentUpon>TProgressBar.cs</DependentUpon>
@@ -84,8 +102,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TestForms\TIntNumericUpDownTestForm.resx">
+      <DependentUpon>TIntNumericUpDownTestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestForms\TProgressBarTestForm.resx">
       <DependentUpon>TProgressBarTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestForms\TSyntaxTextBoxTestForm.resx">
+      <DependentUpon>TSyntaxTextBoxTestForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
