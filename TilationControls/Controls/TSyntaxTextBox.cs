@@ -3,10 +3,10 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
+//using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using TilationControls.DS;
@@ -21,7 +21,8 @@ namespace TilationControls.Controls
 
         List<SyntaxHighlight> highlights = null;
 
-        
+        BackgroundWorker bwFormatter;
+
         List<SyntaxHighlight> Highlights
         {
             get => highlights;
@@ -39,11 +40,11 @@ namespace TilationControls.Controls
             Highlights.Clear();
         }
 
-        public void AddHighlight(SyntaxHighlight nh)
+        public void AddHighlight(SyntaxHighlight NewHighlight)
         {
-            if (!Highlights.Contains(nh))
+            if (!Highlights.Contains(NewHighlight))
             {
-                Highlights.Add(nh);
+                Highlights.Add(NewHighlight);
             }
         }
 
@@ -52,12 +53,13 @@ namespace TilationControls.Controls
             Highlights = NewHighlights;
         }
 
-        BackgroundWorker bwFormatter;
-
+        
         public TSyntaxTextBox()
         {
-            bwFormatter = new BackgroundWorker();
-            bwFormatter.WorkerSupportsCancellation = true;
+            bwFormatter = new BackgroundWorker
+            {
+                WorkerSupportsCancellation = true,
+            };
 
             bwFormatter.DoWork += BwFormatter_DoWork;
 
@@ -100,8 +102,10 @@ namespace TilationControls.Controls
         private void BwFormatter_DoWork(object sender, DoWorkEventArgs e)
         {
             SyntaxHighlightArgs _args = (SyntaxHighlightArgs)e.Argument;
-            RichTextBox _buffer = new RichTextBox();
-            _buffer.Font = _args.Font;
+            RichTextBox _buffer = new RichTextBox
+            {
+                Font = _args.Font
+            };
             e.Result = null;
 
             if (_args.SyntaxHighlightsArgs != null)
@@ -148,7 +152,7 @@ namespace TilationControls.Controls
 
         private void HighlightsChanged()
         {
-            //FormatText();
+            FormatText();
         }
 
         public void FormatText()
